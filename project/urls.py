@@ -15,6 +15,7 @@ urlpatterns = [
     # Endpoints
     path('api/v1/tax_brackets/', include('tax_brackets.urls')),
     path('api/v1/deductions/', include('deductions.urls')),
+    path('api/v1/returns/', include('returns.urls')),
 
     # Login Endpoint
     path('api-auth', include("rest_framework.urls")),

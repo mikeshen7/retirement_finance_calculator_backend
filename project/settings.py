@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'accounts',
     'tax_brackets',
     'deductions',
+    'returns',
 ]
 
 MIDDLEWARE = [
