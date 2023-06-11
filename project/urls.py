@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Redirect URL
-    path('', lambda req: redirect('admin/')),
+    path('', lambda req: redirect('home/')),
 
     # Endpoints
     path('api/v1/tax_brackets/', include('tax_brackets.urls')),
