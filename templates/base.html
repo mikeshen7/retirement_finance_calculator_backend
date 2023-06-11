@@ -1,0 +1,75 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class='dark'>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement Finance Calculator</title>
+  <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+
+  {% compress css %}
+  <link rel="stylesheet" href="{% static 'src/output.css' %}">
+  {% endcompress %}
+</head>
+
+<header class="m-2">
+  <!-- Desktop Header -->
+  <div class="flex flex-row justify-between items-center">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img src="{% static 'img/100x100.svg' %}" alt="Image" class="mr-2" />
+      <div class="hidden sm:block">
+        <h1 class="text-xl font-bold">Retirement</h1>
+        <h1 class="text-xl font-bold">Resource</h1>
+      </div>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="flex flex-row justify-between hidden sm:block">
+      <a href="{% url 'home' %}" class="px-1 flex-grow text-center">Home</a>
+      <a href="{% url 'tax_calc_form' %}" class="px-1 flex-grow text-center">Tax Calculator</a>
+      <a href="{% url 'budget' %}" class="px-1 flex-grow text-center">Budget</a>
+      <a href="{% url 'other_links' %}" class="px-1 flex-grow text-center">Other Links</a>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="sm:hidden">
+      <button type="button" id="menu-toggle" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu -->
+  <div id="menu" class="hidden sm:flex flex-col mt-2 bg-gray-200 rounded-lg p-4 text-right" style="display: none;">
+    <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Home</a>
+    <a href="{% url 'tax_calc_form' %}" class="block py-2 px-4 hover:bg-gray-300">Tax Calculator</a>
+    <a href="{% url 'budget' %}" class="block py-2 px-4 hover:bg-gray-300">Budget</a>
+    <a href="{% url 'other_links' %}" class="block py-2 px-4 hover:bg-gray-300">Other Links</a>
+  </div>
+</header>
+
+<body class="min-w-[350px]">
+
+  {% block content %}
+  <h1>Forgot content</h1>
+  {% endblock content %}
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      var menu = document.getElementById('menu');
+      if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'flex';
+      }
+    });
+  </script>
+
+</body>

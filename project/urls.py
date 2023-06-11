@@ -17,6 +17,9 @@ urlpatterns = [
     path('api/v1/deductions/', include('deductions.urls')),
     path('api/v1/returns/', include('returns.urls')),
 
+    # Frontend
+    path('home/', include('frontend.urls')),
+
     # Login Endpoint
     path('api-auth', include("rest_framework.urls")),
 

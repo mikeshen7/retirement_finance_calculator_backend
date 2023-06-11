@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'tax_calc_output' %}" class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
+  {% csrf_token %}
+  <div class="mb-4 p-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="filing-status">Filing Status:</label>
+    <select id="filing-status" name="filing-status" class="border border-gray-300 rounded px-3 py-2 w-full">
+      <option value="single">Single</option>
+      <option value="mfj">Married Filing Jointly</option>
+      <option value="mfs">Married Filing Separately</option>
+      <option value="hh">Head of Household</option>
+      <option value="qw">Qualifying Widow</option>
+    </select>
+  </div>
+
+  <div class="mb-4 p-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="tax-year">Tax Year:</label>
+    <input id="tax-year" name="tax-year" type="number" class="border border-gray-300 rounded px-3 py-2 w-full" value="2022" />
+  </div>
+
+  <div class="mb-4 p-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="ordinary-income">Ordinary Income:</label>
+    <input id="ordinary-income" name="ordinary-income" type="number" class="border border-gray-300 rounded px-3 py-2 w-full" />
+  </div>
+
+  <div class="mb-4 p-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="capital-gains">Capital Gains:</label>
+    <input id="capital-gains" name="capital-gains" type="number" class="border border-gray-300 rounded px-3 py-2 w-full" />
+  </div>
+
+  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2">Calculate</button>
+</form>
+{% endblock content %}

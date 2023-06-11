@@ -35,11 +35,13 @@ INSTALLED_APPS = [
     # 3rd party apps:
     'rest_framework',
     'whitenoise',
+    'compressor',
     # Local apps:
     'accounts',
     'tax_brackets',
     'deductions',
     'returns',
+    'frontend',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,9 +87,15 @@ DATABASES = {
         'PASSWORD': env('DATABASE_PASSWORD'),
         'HOST': env('DATABASE_HOST'),
         'PORT': env('DATABASE_PORT'),
-    }
+    },
 }
 
+# Use a temporary database for tests
+DATABASES['default']['TEST'] = {
+    'SERIALIZE': False,
+    'MIRROR': 'default',
+    'NAME': 'test_{}'.format(DATABASES['default']['NAME']),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -123,8 +131,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -140,3 +148,8 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+# Compressor config
+COMPRESS_ROOT = BASE_DIR / 'static'
+COMPRESS_ENABLED = True
+STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
