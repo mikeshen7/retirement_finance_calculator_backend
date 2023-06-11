@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 <div class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
   <h2 class="text-xl font-bold">Your Inputs</h2>
-  <table class="table">
+  <table class="table mb-8">
     <tbody>
       <tr>
         <td class="w-48">Filing Status:</td>
@@ -15,47 +17,47 @@
       </tr>
       <tr>
         <td class="w-48">ordinary_income:</td>
-        <td class="text-right w-24">${{ ordinary_income }}</td>
+        <td class="text-right w-24">${{ ordinary_income|intcomma }}</td>
       </tr>
       <tr>
         <td class="w-48">capital_gains:</td>
-        <td class="text-right w-24">${{ capital_gains }}</td>
+        <td class="text-right w-24">${{ capital_gains|intcomma }}</td>
       </tr>
     </tbody>
   </table>
 
-  <h2 class="text-xl font-bold">Taxable income</h2>
-  <table class="table min-table">
+  <h2 class="text-xl font-bold mb-4">Taxable income</h2>
+  <table class="table min-table mb-8">
     <tbody>
       <tr>
         <td class="w-48">Standard Deduction:</td>
-        <td class="text-right w-24">${{ standard_deduction }}</td>
+        <td class="text-right w-24">${{ standard_deduction|intcomma }}</td>
       </tr>
       <tr>
         <td class="w-48">Taxable Ordinary Income:</td>
-        <td class="text-right w-24">${{ taxable_ordinary_income }}</td>
+        <td class="text-right w-24">${{ taxable_ordinary_income|intcomma }}</td>
       </tr>
       <tr>
         <td class="w-48">Taxable Capital Gains:</td>
-        <td class="text-right w-24">${{ taxable_capital_gains }}</td>
+        <td class="text-right w-24">${{ taxable_capital_gains|intcomma }}</td>
       </tr>
     </tbody>
   </table>
 
-  <h2 class="text-xl font-bold">Tax</h2>
+  <h2 class="text-xl font-bold mb-4">Tax</h2>
   <table class="table">
     <tbody>
       <tr>
         <td class="w-48">Tax on Ordinary Income:</td>
-        <td class="text-right w-24">${{ ordinary_income_tax }}</td>
+        <td class="text-right w-24">${{ ordinary_income_tax|intcomma }}</td>
       </tr>
       <tr>
         <td class="w-48">Tax on Capital Gains:</td>
-        <td class="text-right w-24">${{ capital_gains_tax }}</td>
+        <td class="text-right w-24">${{ capital_gains_tax|intcomma }}</td>
       </tr>
       <tr>
         <td class="w-48">Total Tax:</td>
-        <td class="text-right w-24">${{ total_tax }}</td>
+        <td class="text-right w-24">${{ total_tax|intcomma }}</td>
       </tr>
     </tbody>
   </table>
