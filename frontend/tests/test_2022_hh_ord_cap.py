@@ -65,6 +65,6 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('176277.50'))
+        self.assertEqual(context['ordinary_income_tax'], Decimal('176278'))
         self.assertEqual(context['capital_gains_tax'], Decimal('20000'))
-        self.assertEqual(context['total_tax'], Decimal('196277.50'))
+        self.assertEqual(context['total_tax'], Decimal('196278'))

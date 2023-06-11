@@ -117,7 +117,7 @@ def calculate_tax(income, tax_brackets, tax_bracket_index=0, old_taxable_ordinar
             tax += bracket_size * percentage / 100
             income -= bracket_size
             tax_bracket_index += 1
-    return tax.quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
+    return tax.quantize(Decimal('0'))
 
 
 def find_capital_gains_bracket(taxable_ordinary_income, capital_gains_bracket):

@@ -45,8 +45,8 @@ class TaxCalculationTest(TestCase):
         # Check tax calculations in the response context
         context = response.context
         self.assertEqual(context['ordinary_income_tax'], Decimal('0'))
-        self.assertEqual(context['capital_gains_tax'], Decimal('6112.50'))
-        self.assertEqual(context['total_tax'], Decimal('6112.50'))
+        self.assertEqual(context['capital_gains_tax'], Decimal('6112'))
+        self.assertEqual(context['total_tax'], Decimal('6112'))
 
     def test_mfj_cap_20(self):
         # Prepare test data
@@ -66,5 +66,5 @@ class TaxCalculationTest(TestCase):
         # Check tax calculations in the response context
         context = response.context
         self.assertEqual(context['ordinary_income_tax'], Decimal('0'))
-        self.assertEqual(context['capital_gains_tax'], Decimal('76457.50'))
-        self.assertEqual(context['total_tax'], Decimal('76457.50'))
+        self.assertEqual(context['capital_gains_tax'], Decimal('76458'))
+        self.assertEqual(context['total_tax'], Decimal('76458'))

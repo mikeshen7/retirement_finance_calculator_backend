@@ -665,6 +665,10 @@ video {
   width: 1.5rem;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
 .min-w-\[350px\] {
   min-width: 350px;
 }

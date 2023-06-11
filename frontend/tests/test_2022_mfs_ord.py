@@ -107,9 +107,9 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('17127.48'))
+        self.assertEqual(context['ordinary_income_tax'], Decimal('17127'))
         self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('17127.48'))
+        self.assertEqual(context['total_tax'], Decimal('17127'))
 
     def test_mfs_ord_32(self):
         # Prepare test data
@@ -128,9 +128,9 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('36887.48'))
+        self.assertEqual(context['ordinary_income_tax'], Decimal('36887'))
         self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('36887.48'))
+        self.assertEqual(context['total_tax'], Decimal('36887'))
 
     def test_mfs_ord_35(self):
         # Prepare test data
@@ -149,9 +149,9 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('49720.48'))
+        self.assertEqual(context['ordinary_income_tax'], Decimal('49720'))
         self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('49720.48'))
+        self.assertEqual(context['total_tax'], Decimal('49720'))
 
     def test_mfs_ord_37(self):
         # Prepare test data
@@ -170,7 +170,7 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('91982.98'))
+        self.assertEqual(context['ordinary_income_tax'], Decimal('91983'))
         self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('91982.98'))
+        self.assertEqual(context['total_tax'], Decimal('91983'))
 

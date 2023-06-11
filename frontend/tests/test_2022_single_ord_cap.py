@@ -44,9 +44,9 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('1627.5'))
+        self.assertEqual(context['ordinary_income_tax'], Decimal('1628'))
         self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('1627.5'))
+        self.assertEqual(context['total_tax'], Decimal('1628'))
 
     def test_single_ord_cap_2(self):
         # Prepare test data
