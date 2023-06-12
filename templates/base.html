@@ -40,15 +40,15 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="menu" class="flex flex-col mt-2 bg-gray-200 rounded-lg p-4 text-right" style="display: none;">
-        <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Home</a>
-        <a href="{% url 'income_form' %}" class="block py-2 px-4 hover:bg-gray-300">Income</a>
-        <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Current Savings</a>
-        <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Savings Projections</a>
-        <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Expenses</a>
-        <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Debt</a>
-        <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-300">Retirement Goal</a>
-        <a href="{% url 'tax_calc_form' %}" class="block py-2 px-4 hover:bg-gray-300">Tax Calculator</a>
+    <div id="menu" class="absolute right-0 top-5 flex flex-col mt-2 bg-gray-200 rounded-lg p-2 text-right" style="display: none;">
+        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Home</a>
+        <a href="{% url 'income_form' %}" class="block hover:bg-gray-300">Income</a>
+        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Current Savings</a>
+        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Savings Projections</a>
+        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Expenses</a>
+        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Debt</a>
+        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Retirement Goal</a>
+        <a href="{% url 'tax_calc_form' %}" class="block hover:bg-gray-300">Tax Calculator</a>
     </div>
 </header>
 
