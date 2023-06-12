@@ -2,11 +2,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 from tax_brackets.models import Tax_Bracket
 from deductions.models import Deduction
-from decimal import Decimal, ROUND_HALF_UP
-
-
-class home(TemplateView):
-    template_name = 'home.html'
+from decimal import Decimal
 
 
 class tax_calc_form(TemplateView):
@@ -17,6 +13,7 @@ class tax_calc_output(TemplateView):
     template_name = 'tax_calc_output.html'
 
     def post(self, request, *args, **kwargs):
+
         # Get data from form
         filing_status = request.POST.get('filing-status')
         tax_year = request.POST.get('tax-year')
@@ -72,20 +69,18 @@ class tax_calc_output(TemplateView):
 
 
 def get_tax_brackets(tax_year, filing_status):
-    ordinary_income_bracket = Tax_Bracket.objects.filter(
-        year=tax_year, filing_status=filing_status, tax_type='ordinary')
-    capital_gains_bracket = Tax_Bracket.objects.filter(
-        year=tax_year, filing_status=filing_status, tax_type='capital_gains')
-    standard_deduction = Deduction.objects.filter(
-        year=tax_year, filing_status=filing_status)[0].deduction
+    ordinary_income_bracket = Tax_Bracket.objects.filter(year=tax_year, filing_status=filing_status,
+                                                         tax_type='ordinary')
+    capital_gains_bracket = Tax_Bracket.objects.filter(year=tax_year, filing_status=filing_status,
+                                                       tax_type='capital_gains')
+    standard_deduction = Deduction.objects.filter(year=tax_year, filing_status=filing_status)[0].deduction
     return ordinary_income_bracket, capital_gains_bracket, standard_deduction
 
 
 def calculate_taxable_income(ordinary_income, capital_gains, standard_deduction):
     if ordinary_income <= standard_deduction:
         taxable_ordinary_income = 0
-        taxable_capital_gains = capital_gains - \
-            (standard_deduction - ordinary_income)
+        taxable_capital_gains = capital_gains - (standard_deduction - ordinary_income)
         if taxable_capital_gains < 0:
             taxable_capital_gains = 0
     else:
@@ -133,16 +128,3 @@ def find_capital_gains_bracket(taxable_ordinary_income, capital_gains_bracket):
         upper_bound = capital_gains_bracket[tax_bracket_index].upper_bound
 
     return tax_bracket_index
-
-
-
-class LoginView(TemplateView):
-    template_name = 'login.html'
-
-
-class budget(TemplateView):
-    template_name = 'budget.html'
-
-
-class other_links(TemplateView):
-    template_name = 'other_links.html'

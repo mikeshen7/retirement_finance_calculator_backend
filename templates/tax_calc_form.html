@@ -2,33 +2,80 @@
 
 {% block content %}
 <form method="POST" action="{% url 'tax_calc_output' %}" class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
-  {% csrf_token %}
-  <div class="mb-4 p-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="filing-status">Filing Status:</label>
-    <select id="filing-status" name="filing-status" class="border border-gray-300 rounded px-3 py-2 w-full">
-      <option value="single">Single</option>
-      <option value="mfj">Married Filing Jointly</option>
-      <option value="mfs">Married Filing Separately</option>
-      <option value="hh">Head of Household</option>
-      <option value="qw">Qualifying Widow</option>
-    </select>
-  </div>
+    {% csrf_token %}
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="filing-status">Filing Status:</label>
+        <select id="filing-status" name="filing-status" class="border border-gray-300 rounded px-3 py-2 w-full">
+            <option value="single">Single</option>
+            <option value="mfj">Married Filing Jointly</option>
+            <option value="mfs">Married Filing Separately</option>
+            <option value="hh">Head of Household</option>
+            <option value="qw">Qualifying Widow</option>
+        </select>
+    </div>
 
-  <div class="mb-4 p-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="tax-year">Tax Year:</label>
-    <input id="tax-year" name="tax-year" type="number" class="border border-gray-300 rounded px-3 py-2 w-full" value="2022" />
-  </div>
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="tax-year">Tax Year:</label>
+        <input id="tax-year" name="tax-year" type="number" class="border border-gray-300 rounded px-3 py-2 w-full"
+               value="2022"/>
+    </div>
 
-  <div class="mb-4 p-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="ordinary-income">Ordinary Income:</label>
-    <input id="ordinary-income" name="ordinary-income" type="number" class="border border-gray-300 rounded px-3 py-2 w-full" />
-  </div>
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="ordinary-income">Ordinary Income:</label>
+        <input id="ordinary-income" name="ordinary-income" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+    </div>
 
-  <div class="mb-4 p-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="capital-gains">Capital Gains:</label>
-    <input id="capital-gains" name="capital-gains" type="number" class="border border-gray-300 rounded px-3 py-2 w-full" />
-  </div>
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="capital-gains">Capital Gains:</label>
+        <input id="capital-gains" name="capital-gains" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+    </div>
 
-  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2">Calculate</button>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2">Calculate</button>
 </form>
+
+<script type="module">
+    import {getCookie, setCookie} from '../static/admin/js/helper.js';
+
+    // Retrieve form data from cookies
+    function getFormDataFromCookies() {
+        const formData = {
+            filingStatus: getCookie('filingStatus'),
+            taxYear: getCookie('taxYear'),
+            ordinaryIncome: getCookie('ordinaryIncome'),
+            capitalGains: getCookie('capitalGains')
+        };
+
+        // Set the form values based on the retrieved data
+        document.getElementById('filing-status').value = formData.filingStatus || 'single';
+        document.getElementById('tax-year').value = formData.taxYear || '2022';
+        document.getElementById('ordinary-income').value = formData.ordinaryIncome || '';
+        document.getElementById('capital-gains').value = formData.capitalGains || '';
+    }
+
+    // Save form data to cookies
+    function saveFormDataToCookies() {
+        const formData = {
+            filingStatus: document.getElementById('filing-status').value,
+            taxYear: document.getElementById('tax-year').value,
+            ordinaryIncome: document.getElementById('ordinary-income').value,
+            capitalGains: document.getElementById('capital-gains').value
+        };
+
+        // Set the cookies with the form data
+        setCookie('filingStatus', formData.filingStatus);
+        setCookie('taxYear', formData.taxYear);
+        setCookie('ordinaryIncome', formData.ordinaryIncome);
+        setCookie('capitalGains', formData.capitalGains);
+    }
+
+
+    // Load form data from cookies on page load
+    window.addEventListener('DOMContentLoaded', getFormDataFromCookies);
+
+    // Save form data to cookies on form submit
+    const form = document.querySelector('form');
+    form.addEventListener('submit', saveFormDataToCookies);
+</script>
 {% endblock content %}

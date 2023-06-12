@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'tax_brackets',
     'deductions',
     'returns',
-    'frontend',
+    'income',
+    'tax_calculator',
 ]
 
 MIDDLEWARE = [
