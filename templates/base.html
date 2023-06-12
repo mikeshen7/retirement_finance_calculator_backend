@@ -40,15 +40,16 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="menu" class="absolute right-0 top-5 flex flex-col mt-2 bg-gray-200 rounded-lg p-2 text-right" style="display: none;">
-        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Home</a>
-        <a href="{% url 'income_form' %}" class="block hover:bg-gray-300">Income</a>
-        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Current Savings</a>
-        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Savings Projections</a>
-        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Expenses</a>
-        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Debt</a>
-        <a href="{% url 'home' %}" class="block hover:bg-gray-300">Retirement Goal</a>
-        <a href="{% url 'tax_calc_form' %}" class="block hover:bg-gray-300">Tax Calculator</a>
+    <div id="menu" class="absolute right-0 top-5 flex flex-col mt-2 bg-black text-white rounded-lg p-2"
+         style="display: none;">
+        <a href="{% url 'home' %}" class="block hover:text-blue-600">Home</a>
+        <a href="{% url 'income_form' %}" class="block hover:text-blue-600">Income</a>
+        <a href="{% url 'home' %}" class="block hover:text-blue-600">Current Savings</a>
+        <a href="{% url 'home' %}" class="block hover:text-blue-600">Savings Projections</a>
+        <a href="{% url 'home' %}" class="block hover:text-blue-600">Expenses</a>
+        <a href="{% url 'home' %}" class="block hover:text-blue-600">Debt</a>
+        <a href="{% url 'home' %}" class="block hover:text-blue-600">Retirement Goal</a>
+        <a href="{% url 'tax_calc_form' %}" class="block hover:text-blue-600">Tax Calculator</a>
     </div>
 </header>
 
@@ -59,14 +60,28 @@
 {% endblock content %}
 
 <script>
-    document.getElementById('menu-toggle').addEventListener('click', function () {
-        var menu = document.getElementById('menu');
+    var menuToggle = document.getElementById('menu-toggle');
+    var menu = document.getElementById('menu');
+
+    // Toggle menu display when menu-toggle is clicked
+    menuToggle.addEventListener('click', function (event) {
+        event.stopPropagation(); // Prevent the click event from triggering the document click event listener
         if (menu.style.display === 'flex') {
             menu.style.display = 'none';
         } else {
             menu.style.display = 'flex';
         }
     });
+
+    // Close menu when clicking anywhere else on the page
+    document.addEventListener('click', function (event) {
+        var target = event.target;
+        if (!menu.contains(target) && target !== menuToggle) {
+            menu.style.display = 'none';
+        }
+    });
 </script>
+
+
 
 </body>
