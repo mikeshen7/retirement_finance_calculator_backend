@@ -6,66 +6,77 @@
 
 <form method="POST" action="{% url 'income_output' %}" class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
     {% csrf_token %}
-    <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_wages">Wages:</label>
+    <div class="mb-4 p-4 flex items-center">
+        <label class="text-gray-700 text-sm mr-2 font-bold min-w-[70px]"
+               for="income_wages">Wages:</label>
         <input id="income_wages" name="income_wages" type="number"
-               class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select id="income_wages_period" name="income_wages_period" class="border border-gray-300 rounded px-3 py-2">
+               class="border border-gray-300 rounded px-3 py-2 w-full min-w-[100px]"/>
+        <select id="income_wages_period" name="income_wages_period"
+                class="border border-gray-300 rounded px-3 py-2 ml-2">
             <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
+
     </div>
 
-    <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_dividend">Dividend:</label>
+
+    <div class="mb-4 p-4 flex items-center">
+        <label class="text-gray-700 text-sm mr-2 font-bold min-w-[70px]"
+               for="income_dividend">Dividend:</label>
         <input id="income_dividend" name="income_dividend" type="number"
-               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+               class="border border-gray-300 rounded px-3 py-2 w-full min-w-[100px]"/>
         <select id="income_dividend_period" name="income_dividend_period"
-                class="border border-gray-300 rounded px-3 py-2">
+                class="border border-gray-300 rounded px-3 py-2 ml-2">
             <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
-    <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_interest">Interest:</label>
+    <div class="mb-4 p-4 flex items-center">
+        <label class="text-gray-700 text-sm mr-2 font-bold min-w-[70px]"
+               for="income_interest">Interest:</label>
         <input id="income_interest" name="income_interest" type="number"
-               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+               class="border border-gray-300 rounded w-full px-3 py-2 min-w-[100px]"/>
         <select id="income_interest_period" name="income_interest_period"
-                class="border border-gray-300 rounded px-3 py-2">
+                class="border border-gray-300 rounded px-3 py-2 ml-2">
             <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
-    <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_pension">Pension:</label>
+    <div class="mb-4 p-4 flex items-center">
+        <label class="text-gray-700 text-sm mr-2 font-bold min-w-[70px]"
+               for="income_pension">Pension:</label>
         <input id="income_pension" name="income_pension" type="number"
-               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+               class="border border-gray-300 rounded px-3 py-2 w-full min-w-[100px]"/>
         <select id="income_pension_period" name="income_pension_period"
-                class="border border-gray-300 rounded px-3 py-2">
+                class="border border-gray-300 rounded px-3 py-2 ml-2">
             <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
-    <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_social_security">Social Security:</label>
+    <div class="mb-4 p-4 flex items-center">
+        <label class="text-gray-700 text-sm mr-2 font-bold min-w-[70px]"
+               for="income_social_security">Social
+            Security:</label>
         <input id="income_social_security" name="income_social_security" type="number"
-               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+               class="border border-gray-300 rounded px-3 py-2 w-full min-w-[100px]"/>
         <select id="income_social_security_period" name="income_social_security_period"
-                class="border border-gray-300 rounded px-3 py-2">
+                class="border border-gray-300 rounded px-3 py-2 ml-2">
             <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
-    <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_other_income">Other Income:</label>
+    <div class="mb-4 p-4 flex items-center">
+        <label class="text-gray-700 text-sm mr-2 font-bold min-w-[70px]"
+               for="income_other_income">Other
+            Income:</label>
         <input id="income_other_income" name="income_other_income" type="number"
-               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+               class="border border-gray-300 rounded px-3 py-2 w-full min-w-[100px]"/>
         <select id="income_other_income_period" name="income_other_income_period"
-                class="border border-gray-300 rounded px-3 py-2">
+                class="border border-gray-300 rounded px-3 py-2 ml-2">
             <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
