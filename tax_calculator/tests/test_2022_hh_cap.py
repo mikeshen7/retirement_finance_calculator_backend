@@ -68,3 +68,4 @@ class TaxCalculationTest(TestCase):
         self.assertEqual(context['tax_ordinary_income_tax'], Decimal('0'))
         self.assertEqual(context['tax_capital_gains_tax'], Decimal('83325'))
         self.assertEqual(context['tax_total_tax'], Decimal('83325'))
+
