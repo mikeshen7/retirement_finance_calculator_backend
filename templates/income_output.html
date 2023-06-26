@@ -1,7 +1,38 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
-<h1>Income output page</h1>
+<div class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
+    <h2 class="text-xl font-bold">Income</h2>
+    <table class="table mb-8">
+        <tbody>
+        <tr>
+            <td class="w-48">Income:</td>
+            <td class="text-right w-24">${{ income|intcomma }}</td>
+        </tr>
+        <tr>
+            <td class="w-48">Dividends:</td>
+            <td class="text-right w-24">${{ dividend|intcomma }}</td>
+        </tr>
+        <tr>
+            <td class="w-48">Interest:</td>
+            <td class="text-right w-24">${{ interest|intcomma }}</td>
+        </tr>
+        <tr>
+            <td class="w-48">Pension:</td>
+            <td class="text-right w-24">${{ pension|intcomma }}</td>
+        </tr>
+        <tr>
+            <td class="w-48">Social Security:</td>
+            <td class="text-right w-24">${{ social_security|intcomma }}</td>
+        </tr>
+        <tr>
+            <td class="w-48">Other Income:</td>
+            <td class="text-right w-24">${{ other_income|intcomma }}</td>
+        </tr>
+        </tbody>
+    </table>
 
-
+</div>
 {% endblock content %}

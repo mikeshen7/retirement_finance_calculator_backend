@@ -1,10 +1,111 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Income page</h1>
-<p>User input for their current income</p>
-<p>Adjustable for monthly or annual income</p>
-<p>Use after-tax income</p>
-<p>Allow for different types of income: W2, dividend, social security, pension, etc</p>
+<h1>Income</h1>
+<p>Enter your post-tax income</p>
 
+<form method="POST" action="{% url 'income_output' %}" class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
+    {% csrf_token %}
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income">Wages:</label>
+        <input id="income" name="income" type="number" class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select name="income_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annual">Annual</option>
+            <option value="monthly">Monthly</option>
+        </select>
+    </div>
+
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="dividend">Dividend:</label>
+        <input id="dividend" name="dividend" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select name="dividend_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annual">Annual</option>
+            <option value="monthly">Monthly</option>
+        </select>
+    </div>
+
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="interest">Interest:</label>
+        <input id="interest" name="interest" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select name="interest_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annual">Annual</option>
+            <option value="monthly">Monthly</option>
+        </select>
+    </div>
+
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="pension">Pension:</label>
+        <input id="pension" name="pension" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select name="pension_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annual">Annual</option>
+            <option value="monthly">Monthly</option>
+        </select>
+    </div>
+
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="social_security">Social Security:</label>
+        <input id="social_security" name="social_security" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select name="social_security_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annual">Annual</option>
+            <option value="monthly">Monthly</option>
+        </select>
+    </div>
+
+    <div class="mb-4 p-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="other_income">Other Income:</label>
+        <input id="other_income" name="other_income" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select name="other_income_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annual">Annual</option>
+            <option value="monthly">Monthly</option>
+        </select>
+    </div>
+
+    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2">Calculate</button>
+</form>
+
+<script type="module">
+    import {getCookie, setCookie} from '../static/admin/js/helper.js';
+
+    // Retrieve form data from cookies
+    function getFormDataFromCookies() {
+        const formData = {
+            income: getCookie('incomeIncome'),
+            income_period: getCookie('incomeIncomePeriod'),
+            // Retrieve other income sources and their corresponding period selections from cookies
+        };
+
+        // Set the form values based on the retrieved data
+        document.getElementById('income').value = formData.income || '';
+        document.getElementById('income_period').value = formData.income_period || 'annual';
+        // Set other income source values and their corresponding period selections
+
+    }
+
+    // Save form data to cookies
+    function saveFormDataToCookies() {
+        const formData = {
+            income: document.getElementById('income').value,
+            income_period: document.getElementById('income_period').value,
+            // Get values and period selections for other income sources
+        };
+
+        // Set the cookies with the form data
+        setCookie('incomeIncome', formData.income);
+        setCookie('incomeIncomePeriod', formData.income_period);
+        // Save other income source values and their corresponding period selections to cookies
+
+    }
+
+    // Load form data from cookies on page load
+    window.addEventListener('DOMContentLoaded', getFormDataFromCookies);
+
+    // Save form data to cookies on form submit
+    const form = document.querySelector('form');
+    form.addEventListener('submit', saveFormDataToCookies);
+</script>
 {% endblock content %}

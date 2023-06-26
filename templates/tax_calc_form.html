@@ -4,8 +4,8 @@
 <form method="POST" action="{% url 'tax_calc_output' %}" class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
     {% csrf_token %}
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="filing-status">Filing Status:</label>
-        <select id="filing-status" name="filing-status" class="border border-gray-300 rounded px-3 py-2 w-full">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="tax_filing_status">Filing Status:</label>
+        <select id="tax_filing_status" name="tax_filing_status" class="border border-gray-300 rounded px-3 py-2 w-full">
             <option value="single">Single</option>
             <option value="mfj">Married Filing Jointly</option>
             <option value="mfs">Married Filing Separately</option>
@@ -15,20 +15,20 @@
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="tax-year">Tax Year:</label>
-        <input id="tax-year" name="tax-year" type="number" class="border border-gray-300 rounded px-3 py-2 w-full"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="tax_tax_year">Tax Year:</label>
+        <input id="tax_tax_year" name="tax_tax_year" type="number" class="border border-gray-300 rounded px-3 py-2 w-full"
                value="2022"/>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="ordinary-income">Ordinary Income:</label>
-        <input id="ordinary-income" name="ordinary-income" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="tax_ordinary_income">Ordinary Income:</label>
+        <input id="tax_ordinary_income" name="tax_ordinary_income" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="capital-gains">Capital Gains:</label>
-        <input id="capital-gains" name="capital-gains" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="tax_capital_gains">Capital Gains:</label>
+        <input id="tax_capital_gains" name="tax_capital_gains" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
     </div>
 
@@ -41,33 +41,33 @@
     // Retrieve form data from cookies
     function getFormDataFromCookies() {
         const formData = {
-            filingStatus: getCookie('filingStatus'),
-            taxYear: getCookie('taxYear'),
-            ordinaryIncome: getCookie('ordinaryIncome'),
-            capitalGains: getCookie('capitalGains')
+            tax_filing_status: getCookie('tax_filing_status'),
+            tax_tax_year: getCookie('tax_tax_year'),
+            tax_ordinary_income: getCookie('tax_ordinary_income'),
+            tax_capital_gains: getCookie('tax_capital_gains')
         };
 
         // Set the form values based on the retrieved data
-        document.getElementById('filing-status').value = formData.filingStatus || 'single';
-        document.getElementById('tax-year').value = formData.taxYear || '2022';
-        document.getElementById('ordinary-income').value = formData.ordinaryIncome || '';
-        document.getElementById('capital-gains').value = formData.capitalGains || '';
+        document.getElementById('tax_filing_status').value = formData.tax_filing_status || 'single';
+        document.getElementById('tax_tax_year').value = formData.tax_tax_year || '2022';
+        document.getElementById('tax_ordinary_income').value = formData.tax_ordinary_income || '';
+        document.getElementById('tax_capital_gains').value = formData.tax_capital_gains || '';
     }
 
     // Save form data to cookies
     function saveFormDataToCookies() {
         const formData = {
-            filingStatus: document.getElementById('filing-status').value,
-            taxYear: document.getElementById('tax-year').value,
-            ordinaryIncome: document.getElementById('ordinary-income').value,
-            capitalGains: document.getElementById('capital-gains').value
+            tax_filing_status: document.getElementById('tax_filing_status').value,
+            tax_tax_year: document.getElementById('tax_tax_year').value,
+            tax_ordinary_income: document.getElementById('tax_ordinary_income').value,
+            tax_capital_gains: document.getElementById('tax_capital_gains').value
         };
 
         // Set the cookies with the form data
-        setCookie('filingStatus', formData.filingStatus);
-        setCookie('taxYear', formData.taxYear);
-        setCookie('ordinaryIncome', formData.ordinaryIncome);
-        setCookie('capitalGains', formData.capitalGains);
+        setCookie('tax_filing_status', formData.tax_filing_status);
+        setCookie('tax_tax_year', formData.tax_tax_year);
+        setCookie('tax_ordinary_income', formData.tax_ordinary_income);
+        setCookie('tax_capital_gains', formData.tax_capital_gains);
     }
 
 

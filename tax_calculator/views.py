@@ -15,54 +15,54 @@ class tax_calc_output(TemplateView):
     def post(self, request, *args, **kwargs):
 
         # Get data from form
-        filing_status = request.POST.get('filing-status')
-        tax_year = request.POST.get('tax-year')
+        tax_filing_status = request.POST.get('tax_filing_status')
+        tax_tax_year = request.POST.get('tax_tax_year')
 
         # Get ordinary income and handle invalid input
         try:
-            ordinary_income = int(request.POST.get('ordinary-income'))
+            tax_ordinary_income = int(request.POST.get('tax_ordinary_income'))
         except ValueError:
-            ordinary_income = 0
+            tax_ordinary_income = 0
 
         try:
-            capital_gains = int(request.POST.get('capital-gains'))
+            tax_capital_gains = int(request.POST.get('tax_capital_gains'))
         except ValueError:
-            capital_gains = 0
+            tax_capital_gains = 0
 
         # Get data from database
-        ordinary_income_bracket, capital_gains_bracket, standard_deduction = get_tax_brackets(
-            tax_year, filing_status)
+        tax_ordinary_income_bracket, tax_capital_gains_bracket, tax_standard_deduction = get_tax_brackets(
+            tax_tax_year, tax_filing_status)
 
         # Calc taxable income
-        taxable_ordinary_income, taxable_capital_gains = calculate_taxable_income(
-            ordinary_income, capital_gains, standard_deduction)
+        tax_taxable_ordinary_income, tax_taxable_capital_gains = calculate_taxable_income(
+            tax_ordinary_income, tax_capital_gains, tax_standard_deduction)
 
         # Calculate tax on ordinary income
-        ordinary_income_tax = calculate_tax(
-            taxable_ordinary_income, ordinary_income_bracket)
+        tax_ordinary_income_tax = calculate_tax(
+            tax_taxable_ordinary_income, tax_ordinary_income_bracket)
 
         # Find capital gains starting tax bracket
-        tax_bracket_index = find_capital_gains_bracket(
-            taxable_ordinary_income, capital_gains_bracket)
-        capital_gains_tax = calculate_tax(
-            taxable_capital_gains, capital_gains_bracket, tax_bracket_index, taxable_ordinary_income)
+        tax_tax_bracket_index = find_capital_gains_bracket(
+            tax_taxable_ordinary_income, tax_capital_gains_bracket)
+        tax_capital_gains_tax = calculate_tax(
+            tax_taxable_capital_gains, tax_capital_gains_bracket, tax_tax_bracket_index, tax_taxable_ordinary_income)
 
-        total_tax = ordinary_income_tax + capital_gains_tax
+        tax_total_tax = tax_ordinary_income_tax + tax_capital_gains_tax
 
         # Prepare the context data to be passed to the template
         context = {
-            'filing_status': filing_status,
-            'tax_year': tax_year,
-            'ordinary_income': ordinary_income,
-            'capital_gains': capital_gains,
-            'standard_deduction': standard_deduction,
-            'ordinary_income_bracket': ordinary_income_bracket,
-            'capital_gains_bracket': capital_gains_bracket,
-            'taxable_ordinary_income': taxable_ordinary_income,
-            'taxable_capital_gains': taxable_capital_gains,
-            'ordinary_income_tax': ordinary_income_tax,
-            'capital_gains_tax': capital_gains_tax,
-            'total_tax': total_tax,
+            'tax_filing_status': tax_filing_status,
+            'tax_tax_year': tax_tax_year,
+            'tax_ordinary_income': tax_ordinary_income,
+            'tax_capital_gains': tax_capital_gains,
+            'tax_standard_deduction': tax_standard_deduction,
+            'tax_ordinary_income_bracket': tax_ordinary_income_bracket,
+            'tax_capital_gains_bracket': tax_capital_gains_bracket,
+            'tax_taxable_ordinary_income': tax_taxable_ordinary_income,
+            'tax_taxable_capital_gains': tax_taxable_capital_gains,
+            'tax_ordinary_income_tax': tax_ordinary_income_tax,
+            'tax_capital_gains_tax': tax_capital_gains_tax,
+            'tax_total_tax': tax_total_tax,
         }
 
         return render(request, self.template_name, context)

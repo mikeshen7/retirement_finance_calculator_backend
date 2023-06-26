@@ -9,10 +9,10 @@ class TaxCalculationTest(TestCase):
     def test_single_ord_cap_0(self):
         # Prepare test data
         data = {
-            'filing-status': 'single',
-            'tax-year': '2022',
-            'ordinary-income': '10000',
-            'capital-gains': '10000',
+            'tax_filing_status': 'single',
+            'tax_tax_year': '2022',
+            'tax_ordinary_income': '10000',
+            'tax_capital_gains': '10000',
         }
 
         # Send POST request to the view
@@ -23,17 +23,17 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('0'))
-        self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('0'))
+        self.assertEqual(context['tax_ordinary_income_tax'], Decimal('0'))
+        self.assertEqual(context['tax_capital_gains_tax'], Decimal('0'))
+        self.assertEqual(context['tax_total_tax'], Decimal('0'))
 
     def test_single_ord_cap_1(self):
         # Prepare test data
         data = {
-            'filing-status': 'single',
-            'tax-year': '2022',
-            'ordinary-income': '28225',
-            'capital-gains': '10000',
+            'tax_filing_status': 'single',
+            'tax_tax_year': '2022',
+            'tax_ordinary_income': '28225',
+            'tax_capital_gains': '10000',
         }
 
         # Send POST request to the view
@@ -44,17 +44,17 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('1628'))
-        self.assertEqual(context['capital_gains_tax'], Decimal('0'))
-        self.assertEqual(context['total_tax'], Decimal('1628'))
+        self.assertEqual(context['tax_ordinary_income_tax'], Decimal('1628'))
+        self.assertEqual(context['tax_capital_gains_tax'], Decimal('0'))
+        self.assertEqual(context['tax_total_tax'], Decimal('1628'))
 
     def test_single_ord_cap_2(self):
         # Prepare test data
         data = {
-            'filing-status': 'single',
-            'tax-year': '2022',
-            'ordinary-income': '562850',
-            'capital-gains': '30000',
+            'tax_filing_status': 'single',
+            'tax_tax_year': '2022',
+            'tax_ordinary_income': '562850',
+            'tax_capital_gains': '30000',
         }
 
         # Send POST request to the view
@@ -65,6 +65,6 @@ class TaxCalculationTest(TestCase):
 
         # Check tax calculations in the response context
         context = response.context
-        self.assertEqual(context['ordinary_income_tax'], Decimal('166418'))
-        self.assertEqual(context['capital_gains_tax'], Decimal('6000'))
-        self.assertEqual(context['total_tax'], Decimal('172418'))
+        self.assertEqual(context['tax_ordinary_income_tax'], Decimal('166418'))
+        self.assertEqual(context['tax_capital_gains_tax'], Decimal('6000'))
+        self.assertEqual(context['tax_total_tax'], Decimal('172418'))
