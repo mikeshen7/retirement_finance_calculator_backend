@@ -55,7 +55,7 @@
     }
 
     // Save form data to cookies
-    function saveFormDataToCookies() {
+    function saveIncomeFormDataToCookies() {
         const formData = {
             tax_filing_status: document.getElementById('tax_filing_status').value,
             tax_tax_year: document.getElementById('tax_tax_year').value,
@@ -76,6 +76,6 @@
 
     // Save form data to cookies on form submit
     const form = document.querySelector('form');
-    form.addEventListener('submit', saveFormDataToCookies);
+    form.addEventListener('submit', saveIncomeFormDataToCookies);
 </script>
 {% endblock content %}

@@ -7,60 +7,66 @@
 <form method="POST" action="{% url 'income_output' %}" class="w-4/5 mx-auto bg-gray-200 p-4 rounded">
     {% csrf_token %}
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="income">Wages:</label>
-        <input id="income" name="income" type="number" class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select name="income_period" class="border border-gray-300 rounded px-3 py-2">
-            <option value="annual">Annual</option>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_wages">Wages:</label>
+        <input id="income_wages" name="income_wages" type="number"
+               class="border border-gray-300 rounded px-3 py-2 w-full"/>
+        <select id="income_wages_period" name="income_wages_period" class="border border-gray-300 rounded px-3 py-2">
+            <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="dividend">Dividend:</label>
-        <input id="dividend" name="dividend" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_dividend">Dividend:</label>
+        <input id="income_dividend" name="income_dividend" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select name="dividend_period" class="border border-gray-300 rounded px-3 py-2">
-            <option value="annual">Annual</option>
+        <select id="income_dividend_period" name="income_dividend_period"
+                class="border border-gray-300 rounded px-3 py-2">
+            <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="interest">Interest:</label>
-        <input id="interest" name="interest" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_interest">Interest:</label>
+        <input id="income_interest" name="income_interest" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select name="interest_period" class="border border-gray-300 rounded px-3 py-2">
-            <option value="annual">Annual</option>
+        <select id="income_interest_period" name="income_interest_period"
+                class="border border-gray-300 rounded px-3 py-2">
+            <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="pension">Pension:</label>
-        <input id="pension" name="pension" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_pension">Pension:</label>
+        <input id="income_pension" name="income_pension" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select name="pension_period" class="border border-gray-300 rounded px-3 py-2">
-            <option value="annual">Annual</option>
+        <select id="income_pension_period" name="income_pension_period"
+                class="border border-gray-300 rounded px-3 py-2">
+            <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="social_security">Social Security:</label>
-        <input id="social_security" name="social_security" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_social_security">Social Security:</label>
+        <input id="income_social_security" name="income_social_security" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select name="social_security_period" class="border border-gray-300 rounded px-3 py-2">
-            <option value="annual">Annual</option>
+        <select id="income_social_security_period" name="income_social_security_period"
+                class="border border-gray-300 rounded px-3 py-2">
+            <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
 
     <div class="mb-4 p-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="other_income">Other Income:</label>
-        <input id="other_income" name="other_income" type="number"
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="income_other_income">Other Income:</label>
+        <input id="income_other_income" name="income_other_income" type="number"
                class="border border-gray-300 rounded px-3 py-2 w-full"/>
-        <select name="other_income_period" class="border border-gray-300 rounded px-3 py-2">
-            <option value="annual">Annual</option>
+        <select id="income_other_income_period" name="income_other_income_period"
+                class="border border-gray-300 rounded px-3 py-2">
+            <option value="annually">Annually</option>
             <option value="monthly">Monthly</option>
         </select>
     </div>
@@ -71,41 +77,72 @@
 <script type="module">
     import {getCookie, setCookie} from '../static/admin/js/helper.js';
 
-    // Retrieve form data from cookies
     function getFormDataFromCookies() {
         const formData = {
-            income: getCookie('incomeIncome'),
-            income_period: getCookie('incomeIncomePeriod'),
-            // Retrieve other income sources and their corresponding period selections from cookies
+            income_wages: getCookie('income_wages'),
+            income_wages_period: getCookie('income_wages_period'),
+            income_dividend: getCookie('income_dividend'),
+            income_dividend_period: getCookie('income_dividend_period'),
+            income_interest: getCookie('income_interest'),
+            income_interest_period: getCookie('income_interest_period'),
+            income_pension: getCookie('income_pension'),
+            income_pension_period: getCookie('income_pension_period'),
+            income_social_security: getCookie('income_social_security'),
+            income_social_security_period: getCookie('income_social_security_period'),
+            income_other_income: getCookie('income_other_income'),
+            income_other_income_period: getCookie('income_other_income_period'),
         };
 
-        // Set the form values based on the retrieved data
-        document.getElementById('income').value = formData.income || '';
-        document.getElementById('income_period').value = formData.income_period || 'annual';
-        // Set other income source values and their corresponding period selections
-
+        document.getElementById('income_wages').value = formData.income_wages || '0';
+        document.getElementById('income_wages_period').value = formData.income_wages_period || 'annually';
+        document.getElementById('income_dividend').value = formData.income_dividend || '0';
+        document.getElementById('income_dividend_period').value = formData.income_dividend_period || 'annually';
+        document.getElementById('income_interest').value = formData.income_interest || '0';
+        document.getElementById('income_interest_period').value = formData.income_interest_period || 'annually';
+        document.getElementById('income_pension').value = formData.income_pension || '0';
+        document.getElementById('income_pension_period').value = formData.income_pension_period || 'annually';
+        document.getElementById('income_social_security').value = formData.income_social_security || '0';
+        document.getElementById('income_social_security_period').value = formData.income_social_security_period || 'annually';
+        document.getElementById('income_other_income').value = formData.income_other_income || '0';
+        document.getElementById('income_other_income_period').value = formData.income_other_income_period || 'annually';
     }
 
-    // Save form data to cookies
     function saveFormDataToCookies() {
         const formData = {
-            income: document.getElementById('income').value,
-            income_period: document.getElementById('income_period').value,
-            // Get values and period selections for other income sources
+            income_wages: document.getElementById('income_wages').value,
+            income_wages_period: document.getElementById('income_wages_period').value,
+            income_dividend: document.getElementById('income_dividend').value,
+            income_dividend_period: document.getElementById('income_dividend_period').value,
+            income_interest: document.getElementById('income_interest').value,
+            income_interest_period: document.getElementById('income_interest_period').value,
+            income_pension: document.getElementById('income_pension').value,
+            income_pension_period: document.getElementById('income_pension_period').value,
+            income_social_security: document.getElementById('income_social_security').value,
+            income_social_security_period: document.getElementById('income_social_security_period').value,
+            income_other_income: document.getElementById('income_other_income').value,
+            income_other_income_period: document.getElementById('income_other_income_period').value,
+
         };
 
-        // Set the cookies with the form data
-        setCookie('incomeIncome', formData.income);
-        setCookie('incomeIncomePeriod', formData.income_period);
-        // Save other income source values and their corresponding period selections to cookies
+        setCookie('income_wages', formData.income_wages);
+        setCookie('income_wages_period', formData.income_wages_period);
+        setCookie('income_dividend', formData.income_dividend);
+        setCookie('income_dividend_period', formData.income_dividend_period);
+        setCookie('income_interest', formData.income_interest);
+        setCookie('income_interest_period', formData.income_interest_period);
+        setCookie('income_pension', formData.income_pension);
+        setCookie('income_pension_period', formData.income_pension_period);
+        setCookie('income_social_security', formData.income_social_security);
+        setCookie('income_social_security_period', formData.income_social_security_period);
+        setCookie('income_other_income', formData.income_other_income);
+        setCookie('income_other_income_period', formData.income_other_income_period);
 
     }
 
-    // Load form data from cookies on page load
     window.addEventListener('DOMContentLoaded', getFormDataFromCookies);
 
-    // Save form data to cookies on form submit
     const form = document.querySelector('form');
     form.addEventListener('submit', saveFormDataToCookies);
 </script>
+
 {% endblock content %}

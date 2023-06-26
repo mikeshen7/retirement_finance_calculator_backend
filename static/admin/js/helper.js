@@ -1,5 +1,6 @@
 // Helper function to get cookie value
 export function getCookie(name) {
+    console.log("in get cookie function")
     const cookieName = encodeURIComponent(name) + '=';
     const cookieArray = document.cookie.split(';');
     for (let i = 0; i < cookieArray.length; i++) {
@@ -16,6 +17,7 @@ export function getCookie(name) {
 
 // Helper function to set cookie value
 export function setCookie(name, value, days = 365) {
+    console.log("in set cookie function")
     const expires = new Date();
     expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
     document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';expires=' + expires.toUTCString() + ';path=/';

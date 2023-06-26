@@ -14,49 +14,55 @@ class income_output(TemplateView):
 
         # Get data from form
         try:
-            income = int(request.POST.get('income'))
+            income_wages = int(request.POST.get('income_wages'))
         except ValueError:
-            income = 0
+            income_wages = 0
 
         try:
-            dividend = int(request.POST.get('dividend'))
+            income_wages_period = request.POST.get('income_wages_period')
         except ValueError:
-            dividend = 0
+            income_wages_period = 'annually'
 
         try:
-            interest = int(request.POST.get('interest'))
+            income_dividend = int(request.POST.get('income_dividend'))
         except ValueError:
-            interest = 0
+            income_dividend = 0
 
         try:
-            pension = int(request.POST.get('pension'))
+            income_interest = int(request.POST.get('income_interest'))
         except ValueError:
-            pension = 0
+            income_interest = 0
 
         try:
-            social_security = int(request.POST.get('social_security'))
+            income_pension = int(request.POST.get('income_pension'))
         except ValueError:
-            social_security = 0
+            income_pension = 0
 
         try:
-            other_income = int(request.POST.get('other_income'))
+            income_social_security = int(request.POST.get('income_social_security'))
         except ValueError:
-            other_income = 0
+            income_social_security = 0
+
+        try:
+            income_other_income = int(request.POST.get('income_other_income'))
+        except ValueError:
+            income_other_income = 0
 
         # Convert to annual income
 
         # Total
-        total_income = 0
+        income_total_income = 0
 
         # Prepare the context data to be passed to the template
         context = {
-            'income': income,
-            'dividend': dividend,
-            'interest': interest,
-            'pension': pension,
-            'social_security': social_security,
-            'other_income': other_income,
-            'total_income': total_income,
+            'income_wages': income_wages,
+            'income_wages_period': income_wages_period,
+            'income_dividend': income_dividend,
+            'income_interest': income_interest,
+            'income_pension': income_pension,
+            'income_social_security': income_social_security,
+            'income_other_income': income_other_income,
+            'income_total_income': income_total_income,
         }
 
         return render(request, self.template_name, context)
